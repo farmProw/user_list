@@ -1,0 +1,25 @@
+button {
+  font-size: 1rem;
+   padding: 10px 20px;
+   background-color: #007bff;
+   color: white;
+   border: none;
+   border-radius: 8px;
+   cursor: pointer;
+   transition: background-color 0.3s;
+   min-width: 120px;
+   min-height: 50px;
+   box-shadow:  1px 5px 4px rgba(0, 0, 0, 0.2);
+ }
+
+ button:hover {
+   background-color: #0056b3;
+ }
+ button:focus {
+   background-color: #0754a6;
+ }
+ button:disabled {
+   background-color: rgba(72, 76, 80,.3);
+   box-shadow: none;
+   cursor: not-allowed;
+ }

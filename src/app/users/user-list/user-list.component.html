@@ -1,0 +1,48 @@
+<div class="wrapper">
+  <div class="row">
+    <div class="col">
+      <div class="table__button-container">
+        <app-button (click)="createUser()"> Create User </app-button>
+      </div>
+    </div>
+    <div class="col"></div>
+  </div>
+  <div class="row">
+    <div class="col left">
+      <div class="table">
+        <div class="table__header">
+          <div class="table__column table__column--username">USERNAME</div>
+          <div class="table__column table__column--first-name">FIRST NAME</div>
+          <div class="table__column table__column--last-name">LAST NAME</div>
+          <div class="table__column table__column--email">EMAIL</div>
+          <div class="table__column table__column--type">TYPE</div>
+        </div>
+        <div class="table__body">
+          @for (user of users; track user.id; let idx = $index ) {
+            <div class="table__row" [ngClass]="{'activeLink': userID() == user.id}" (click)="navigateTo(user.id)" >
+            <div class="table__cell table__cell--username">
+              {{ user.username }}
+            </div>
+            <div class="table__cell table__cell--first-name">
+              {{ user.first_name }}
+            </div>
+            <div class="table__cell table__cell--last-name">
+              {{ user.last_name }}
+            </div>
+            <div class="table__cell table__cell--email">
+              {{ user.email }}
+            </div>
+            <div class="table__cell table__cell--type">
+              {{ user.user_type }}
+            </div>
+          </div>
+          }
+        </div>
+        <div class="table__footer"></div>
+      </div>
+    </div>
+    <div class="col right">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

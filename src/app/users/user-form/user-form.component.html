@@ -1,0 +1,131 @@
+<form *ngIf="userForm" class="wrapper" [formGroup]="userForm" (ngSubmit)="onSubmit()">
+   <div class="header">
+      @if(user()?.first_name||user()?.last_name){
+      <h2 class="header_title">
+         {{ user()?.first_name }}&nbsp;{{ user()?.last_name }}
+      </h2>
+      }@else{
+      <h2 class="header_title">Create new user</h2>
+      }
+      <button (click)="closeHandler.emit()" class="header_action reset-btn">
+         &#10005;
+      </button>
+   </div>
+   <div class="content">
+      <ul class="list">
+         <li class="list-item">
+            <app-input
+               [id]="'username'"
+               [error]="
+                  userForm.get('username')?.touched
+                     ? getErrorText(userForm.get('username')?.errors)
+                     : ''
+               "
+               [label]="'Username'"
+               [required]="true"
+               formControlName="username"
+            ></app-input>
+         </li>
+         <li class="list-item">
+            <app-input
+               [id]="'first_name'"
+               [error]="
+                  userForm.get('first_name')?.touched
+                     ? getErrorText(userForm.get('first_name')?.errors)
+                     : ''
+               "
+               [label]="'First name'"
+               [required]="true"
+               formControlName="first_name"
+            ></app-input>
+         </li>
+         <li class="list-item">
+            <app-input
+               [id]="'last_name'"
+               [error]="
+                  userForm.get('last_name')?.touched
+                     ? getErrorText(userForm.get('last_name')?.errors)
+                     : ''
+               "
+               [label]="'Last name'"
+               [required]="true"
+               formControlName="last_name"
+            ></app-input>
+         </li>
+         <li class="list-item">
+            <app-input
+               [id]="'email'"
+               [error]="
+                  userForm.get('email')?.touched
+                     ? getErrorText(userForm.get('email')?.errors)
+                     : ''
+               "
+               [type]="'email'"
+               [label]="'Email'"
+               [required]="true"
+               formControlName="email"
+            ></app-input>
+         </li>
+         <li class="list-item">
+            <label class="select-label" for="user_type">Type*</label>
+            <div class="select-wrapper">
+               <select formControlName="user_type" class="select">
+                  <option [value]="UserTypeEnum.Driver">
+                     {{ UserTypeEnum.Driver }}
+                  </option>
+                  <option [value]="UserTypeEnum.Admin">
+                     {{ UserTypeEnum.Admin }}
+                  </option>
+               </select>
+            </div>
+         </li>
+
+         <li class="list-item">
+            <app-input
+               [id]="'password'"
+               [type]="'password'"
+               [error]="
+                  userForm.get('password')?.touched
+                     ? getErrorText(userForm.get('password')?.errors)
+                     : ''
+               "
+               [label]="'Password'"
+               [required]="true"
+               formControlName="password"
+            ></app-input>
+         </li>
+         <li class="list-item">
+            <app-input
+               [id]="'repeatPassword'"
+               [error]="
+                  userForm.get('repeatPassword')?.touched
+                     ? getErrorText(userForm.get('repeatPassword')?.errors)
+                     : ''
+               "
+               [type]="'password'"
+               [label]="'Repeat password'"
+               [required]="true"
+               formControlName="repeatPassword"
+            ></app-input>
+         </li>
+      </ul>
+   </div>
+   <div class="footer">
+      @if(pageType() == UserDetailsPageEnum.Edit){
+      <div class="action action_edit">
+         <app-button class="red" (click)="deleteUser(user()?.id!)"
+            >Delete</app-button
+         >
+         <app-button class="blue" (click)="saveUser()" [disabled]="!userForm.valid"
+            >Save</app-button
+         >
+      </div>
+      }@else {
+      <div class="action action_create">
+         <app-button [disabled]="!userForm.valid" (click)="createUser($event)"
+            >Create</app-button
+         >
+      </div>
+      }
+   </div>
+</form>

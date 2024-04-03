@@ -1,0 +1,21 @@
+<label class="input-custom-wrapper">
+  @if(label()){
+  <small class="input-custom-title"
+    >{{ label() }}{{ required() ? "*" : "" }}</small
+  >
+  }
+  <input
+    class="input-custom"
+    [required]="required()"
+    [placeholder]="placeholder()"
+    [readOnly]="readOnly()"
+    [disabled]="disabled"
+    (input)="onInput($event)"
+    [value]="value"
+    [type]="type()"
+    [id]="id()"
+  />
+  @if(error()){
+  <small class="input-custom-error">{{ error() }}</small>
+  }
+</label>

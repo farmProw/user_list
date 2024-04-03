@@ -1,0 +1,30 @@
+:host {
+   position: fixed;
+   top: 30px;
+   right: 20px;
+
+ }
+.tooltip {
+
+   background-color: rgba(40, 167, 69, .8); 
+   padding: 10px;
+   border-radius: 5px;
+   color: white;
+   box-shadow:  1px 5px 4px rgba(0, 0, 0, 0.2);
+   z-index: 1000;
+   min-width: 200px;
+   height: 50px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   color: #fff;
+   font-size: 1rem;
+ }
+ 
+ .close {
+   margin-left: 15px;
+   color: white;
+   background: none;
+   border: none;
+   cursor: pointer;
+ }
